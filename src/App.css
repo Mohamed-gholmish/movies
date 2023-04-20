@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+/* ========Nav Bar========> */
+.cartCount span{
+  position: relative;
+  top: -13px;
+  left: 2px;
+}

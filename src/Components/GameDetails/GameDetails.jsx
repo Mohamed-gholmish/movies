@@ -3,21 +3,25 @@ import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom'
-import styles from './ProductDetails.module.scss'
-const baseUrl = "https://route-ecommerce.onrender.com";
-
-export default function ProductDetails() {
+export default function GameDetails() {
   let [dataObj,setData] = useState({});
   let {id} = useParams();
   let myId;
-async function getData(id){
-let {data} = await axios.get(`${baseUrl}/api/v1/products/${id}`)
-setData(data.data);
-}
-
+  const options = {
+    method: 'GET',
+    params: {id: `${myId}`},
+    headers: {
+          'X-RapidAPI-Key': '620a167456mshdfb6e2440b7333ap12704cjsnf0a180a0a8a6',
+      'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
+    }}
+  async function getGameDetails(myId) {
+    let { data } = await axios.get( `https://free-to-play-games-database.p.rapidapi.com/api/games`,options);
+    console.log(data);
+   
+  }
  useEffect(()=>{
   myId = id;
-getData(myId);
+getGameDetails(myId);
  },[])
 
   return (

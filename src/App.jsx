@@ -5,16 +5,15 @@ import LayOut from "./Components/LayOut/LayOut";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import Register from "./Components/Register/Register";
-import Cart from "./Components/Cart/Cart";
-import Products from "./Components/Products/Products";
+import PC from "./Components/PC/PC";
 import NotFound from "./Components/NotFound/NotFound";
 import ForgetPassword from "./Components/ForgetPassword/ForgetPassword";
 import ResetPassword from "./Components/ResetPassword/ResetPassword";
 import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
 import ProtectedRoute from "./Components/protectedRoute/protectedRoute";
-import ProductDetails from "./Components/ProductDetails/ProductDetails";
-import CartContextProvider from "./Context/CartContext";
+import ProductDetails from "./Components/GameDetails/GameDetails";
+import Browser from "./Components/Browser/Browser";
 
 function App() {
   const [userData, setUserData] = useState(null);
@@ -53,22 +52,18 @@ function App() {
             </ProtectedRoute>
           ),
         },
+
         {
-          path: "cart",
+          path: "pc",
           element: (
             <ProtectedRoute>
-              <Cart />
+              <PC />{" "}
             </ProtectedRoute>
           ),
         },
-        {
-          path: "products",
-          element: (
-            <ProtectedRoute>
-              <Products />{" "}
-            </ProtectedRoute>
-          ),
-        },
+        {path: 'browser',
+      elemnt:(<ProtectedRoute><Browser/></ProtectedRoute>)},
+      
         {
           path: "products/:id",
           element: (
@@ -77,7 +72,6 @@ function App() {
             </ProtectedRoute>
           ),
         },
-
         { path: "login", element: <Login saveUserData={saveUserData} /> },
         { path: "register", element: <Register /> },
         { path: "forget-password", element: <ForgetPassword /> },
@@ -90,9 +84,7 @@ function App() {
   return (
     <>
       {" "}
-     <CartContextProvider><RouterProvider router={routes}></RouterProvider></CartContextProvider>
-        
-      
+      <RouterProvider router={routes}></RouterProvider>
     </>
   );
 }

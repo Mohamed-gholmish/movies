@@ -46,7 +46,7 @@ let myValidation = Yup.object({
   });
   return (
     <div className=' w-75 mx-auto py-5'>
-    <h2 className=' text-center'> Log in Form </h2>
+    <h2 className=' text-center'> Log in to Game Over </h2>
   { errMessage.length > 0 ?< div className='alert alert-danger '>{errMessage}</div> : null}
       <form  onSubmit={formik.handleSubmit}>
       <label htmlFor="email" className=' fs-4'> Email :</label>
@@ -57,6 +57,7 @@ let myValidation = Yup.object({
         <input  onChange={formik.handleChange} onBlur={formik.handleBlur} type="password" className=' form-control my-2' name='password' id="password" value={formik.values.password}/>
         {formik.errors.password && formik.touched.password? <div className="alert alert-danger">{formik.errors.password}</div> : null }
        <div><Link to='/forget-password'className='text-main'> ForgetPassword ?</Link></div> 
+       <div><Link to='/register'> Create Account ?</Link></div>
         {loading ? <button className=' text-white btn bg-main my-5' ><i className=' fas fa-spinner fa-spin'></i></button> : <button disabled={!(formik.isValid && formik.dirty)} className=' text-white btn bg-main my-5' type='submit'>Submit</button>}
       </form>
     </div>)
